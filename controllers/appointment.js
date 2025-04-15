@@ -52,7 +52,7 @@ export const addAppointment = async (req, res, next) => {
   }
 }  
 
-export const getCategories = async (req, res, next) =>{
+export const getAppointments = async (req, res, next) =>{
  try {
   const {filter = '{}',sort = '{}'} = req.query;
       const result = await AppointmentModel.find(JSON.parse(filter)).sort(JSON.parse(sort))

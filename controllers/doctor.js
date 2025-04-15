@@ -116,7 +116,18 @@ export const getDoctorById = async (req, res, next) => {
 
 export const patchDoctor = async (req, res, next) =>{
   try {
-   const updateData = { ...req.body };
+    const authenticatedDoctorId = req.auth.id;
+    
+    // Get the doctor ID from the request parameters
+    const requestedDoctorId = req.params.id;
+    
+    // Check if the authenticated doctor is trying to update their own profile
+    if (authenticatedDoctorId !== requestedDoctorId) {
+      return res.status(403).json({
+        message: "Forbidden: You can only update your own profile"
+      });
+    }
+    const updateData = { ...req.body };
        
        // Check if a new image was uploaded
        if ( req.file?.path) {

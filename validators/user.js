@@ -44,10 +44,8 @@ export const userValidationSchema = Joi.object({
     }),
     
   image: Joi.string()
-    .required()
     .messages({
       'string.empty': 'Image URL cannot be empty',
-      'any.required': 'Image URL is required'
     }),
     
   phone: Joi.string()
@@ -67,11 +65,9 @@ export const userValidationSchema = Joi.object({
     }),
     emergencycontact: Joi.string()
     .pattern(new RegExp('^[0-9]{10,15}$'))
-    .required()
     .messages({
       'string.pattern.base': 'Emergency contact must contain 10-15 digits only',
-      'string.empty': 'Emergency contact cannot be empty',
-      'any.required': 'Emergency contact is required'
+      'string.empty': 'Emergency contact cannot be empty'
     }),
     gender: Joi.string()
     .valid('male', 'female', 'other')
@@ -84,13 +80,11 @@ export const userValidationSchema = Joi.object({
     .integer()
     .min(0)
     .max(120)
-    .required()
     .messages({
       'number.base': 'Age must be a number',
       'number.integer': 'Age must be an integer',
       'number.min': 'Age cannot be negative',
       'number.max': 'Age cannot exceed 120',
-      'any.required': 'Age is required'
     }),
     
   medicalHistory: Joi.string()

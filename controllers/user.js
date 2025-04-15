@@ -113,13 +113,13 @@ export const getUserById = async (req, res, next) => {
 
 export const patchUser = async (req, res, next) => {
   try {
-    const authenticatedDoctorId = req.auth.id;
+    const authenticatedUserId = req.auth.id;
     
-    // Get the doctor ID from the request parameters
-    const requestedDoctorId = req.params.id;
+    // Get the User ID from the request parameters
+    const requestedUserId = req.params.id;
     
-    // Check if the authenticated doctor is trying to update their own profile
-    if (authenticatedDoctorId !== requestedDoctorId) {
+    // Check if the authenticated User is trying to update their own profile
+    if (authenticatedUserId !== requestedUserId) {
       return res.status(403).json({
         message: "Forbidden: You can only update your own profile"
       });
