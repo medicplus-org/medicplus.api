@@ -17,7 +17,7 @@ export const registerUser = async (req, res, next) => {
 
   // Check if user already exists
   const existingUser = await UserModel.findOne({
-    $or: [{ firstname: value.firstname }, { email: value.email }],
+     email: value.email 
   });
 
   if (existingUser) {
@@ -73,7 +73,7 @@ export const loginUser =async (req,res, next) => {
     email : value.email
   });
   if (!User) {
-    return res.status(409).json("User does not exist");
+    return res.status(409).json("Invalid credentials");
   }
   const correctPassword = bcrypt.compareSync(value.password, User.password);
   if (!correctPassword) {

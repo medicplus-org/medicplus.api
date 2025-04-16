@@ -43,11 +43,8 @@ export const userValidationSchema = Joi.object({
       'any.required': 'Last name is required'
     }),
     
-  image: Joi.string()
-    .messages({
-      'string.empty': 'Image URL cannot be empty',
-    }),
-    
+  image: Joi.string(),
+   
   phone: Joi.string()
     .pattern(new RegExp('^[0-9]{10,15}$'))
     .required()
@@ -67,7 +64,6 @@ export const userValidationSchema = Joi.object({
     .pattern(new RegExp('^[0-9]{10,15}$'))
     .messages({
       'string.pattern.base': 'Emergency contact must contain 10-15 digits only',
-      'string.empty': 'Emergency contact cannot be empty'
     }),
     gender: Joi.string()
     .valid('male', 'female', 'other')
