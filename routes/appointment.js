@@ -8,8 +8,8 @@ const appointmentRouter = Router();
 appointmentRouter.post("/appointment",addAppointment);
 appointmentRouter.get('/appointment',isAuthenticated, getAppointments);
 appointmentRouter.get('/appointment/:id',isAuthenticated, getAppointment);
-appointmentRouter.patch('/appointment',isAuthenticated, patchAppointment);
-appointmentRouter.delete('/appointment',isAuthenticated, deleteAppointment);
+appointmentRouter.patch('/appointment/:id',isAuthenticated, patchAppointment);
+appointmentRouter.delete('/appointment/:id',isAuthenticated, deleteAppointment);
 
 
 export default appointmentRouter;
