@@ -5,9 +5,10 @@ import {
   logindoctor,
   getDoctors,
   getDoctorById,
-  patchDoctor
+  patchDoctor,
+  deleteDoctor
 } from "../controllers/doctor.js";
-import { isAuthenticated,isAuthorized } from '../middlewares/auth.js';
+import { isAuthenticated,isDoctorAuthorized } from '../middlewares/auth.js';
 
 import { doctorsPicturesUpload } from '../middlewares/uploads.js';
 
@@ -26,9 +27,9 @@ doctorRouter.get("/doctor",isAuthenticated, getDoctors);
 doctorRouter.get("/doctor/:id",isAuthenticated, getDoctorById);
 
 // Update a doctor by ID
-doctorRouter.patch("/doctor/:id",doctorsPicturesUpload.single("image"), patchDoctor);
+doctorRouter.patch("/doctor/:id",doctorsPicturesUpload.single("image"),isAuthenticated,isDoctorAuthorized('doctor'), patchDoctor);
 
 // Delete a doctor by ID
-// doctorRouter.delete("/doctor/:id", deleteDoctor);
+doctorRouter.delete("/doctor/:id",isAuthenticated,isDoctorAuthorized('doctor'),  deleteDoctor);
 
 export default doctorRouter;

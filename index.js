@@ -4,6 +4,7 @@ import cors from "cors";
 import "dotenv/config"
 import userRouter from "./routes/user.js";
 import doctorRouter from "./routes/doctor.js";
+import appointmentRouter from "./routes/appointment.js";
 
 
 
@@ -19,7 +20,7 @@ app.use(cors());
 // app.use(productRouter);
 app.use(userRouter)
 app.use(doctorRouter)
-// app.use(appointmentRouter);
+app.use(appointmentRouter);
 
 
 
