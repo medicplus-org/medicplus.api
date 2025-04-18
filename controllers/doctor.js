@@ -154,6 +154,17 @@ export const patchDoctor = async (req, res, next) =>{
  }
 export const deleteDoctor = async (req, res, next) =>{
   try {
+    const authenticatedDoctorId = req.auth.id;
+    
+    // Get the doctor ID from the request parameters
+    const requestedDoctorId = req.params.id;
+    
+    // Check if the authenticated doctor is trying to update their own profile
+    if (authenticatedDoctorId !== requestedDoctorId) {
+      return res.status(403).json({
+        message: "Forbidden: You can only delete your own profile"
+      });
+    }
    const result = await DoctorModel.findByIdAndDelete(req.params.id);
    if (!result){
     return res.status(404).json({
