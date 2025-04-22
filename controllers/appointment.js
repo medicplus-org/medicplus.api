@@ -153,7 +153,7 @@ export const patchAppointment = async (req, res, next) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-export const deleteAppointment = async (req, res) =>{
+export const deleteAppointment = async (req, res) => {
   try {
     const authenticatedUserId = req.auth.id;
     const appointmentId = req.params.id;
@@ -175,11 +175,8 @@ export const deleteAppointment = async (req, res) =>{
       });
     }
     
-    // If authorized, update the appointment
-    const result = await AppointmentModel.findByIdAndDelete(
-      appointmentId, 
-      req.body,
-    );
+    // If authorized, delete the appointment (removed req.body from here)
+    const result = await AppointmentModel.findByIdAndDelete(appointmentId);
     
     return res.json({
       message: "Appointment deleted successfully",
@@ -190,4 +187,4 @@ export const deleteAppointment = async (req, res) =>{
     console.error("Error deleting appointment:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
- }
+}
